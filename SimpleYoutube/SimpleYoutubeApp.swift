@@ -10,10 +10,11 @@ import SwiftUI
 @main
 struct SimpleYoutubeApp: App {
     let persistenceController = PersistenceController.shared
+    let playlistViewModel = PlaylistViewModel()
 
     var body: some Scene {
         WindowGroup {
-            PlaylistView()
+            PlaylistView(viewModel: playlistViewModel)
 //            ContentView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

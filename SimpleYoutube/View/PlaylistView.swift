@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct PlaylistView: View {
-    let videoId = "4HcSMGobl94"
+    @ObservedObject var viewModel: PlaylistViewModel
+    
+    init(viewModel: PlaylistViewModel) {
+      self.viewModel = viewModel
+    }
     
     var body: some View {
         NavigationView{
             ScrollView {
                 LazyVStack {
-                    videoBlock
+                    ForEach(viewModel.dataSource, content: VideoRowView.init(viewModel:))
                 }
             }
             .navigationBarTitle(Text("Simple Youtube"), displayMode: .inline)
@@ -30,18 +34,10 @@ struct PlaylistView: View {
 }
 
 private extension PlaylistView {
-    var videoBlock: some View {
-        NavigationLink(destination: VideoView(videoId: videoId)) {
-            VStack(alignment: .leading) {
-                URLImage(url: URL(string: "https://img.youtube.com/vi/\(videoId)/maxresdefault.jpg"))
-                VideoInfoView()
-            }
-        }
-    }
 }
 
 struct PlaylistView_Previews: PreviewProvider {
     static var previews: some View {
-        PlaylistView()
+        PlaylistView(viewModel: PlaylistViewModel())
     }
 }

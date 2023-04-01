@@ -48,3 +48,9 @@ struct VideoInfoView: View {
         }
     }
 }
+
+struct VideoView_Previews: PreviewProvider {
+    static var previews: some View {
+        VideoView(videoId: "4HcSMGobl94")
+    }
+}

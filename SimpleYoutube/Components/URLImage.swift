@@ -17,18 +17,22 @@ struct URLImage: View {
                 .resizable()
                 .scaledToFit()
         } else {
-            ProgressView()
-                .onAppear(perform: loadImage)
+            GeometryReader { geometry in
+                ProgressView()
+                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                    .onAppear(perform: loadImage)
+            }
         }
     }
     
     private func loadImage() {
-        guard let safeUrl = url else {
+        guard let url = url else {
             image = UIImage(named: "error-icon")
             return
         }
-        URLSession.shared.dataTask(with: safeUrl) { data, response, error in
+        URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else {
+                image = UIImage(named: "error-icon")
                 return
             }
             
