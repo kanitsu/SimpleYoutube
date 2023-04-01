@@ -15,6 +15,10 @@
 		1CC3040529D38D2B00069871 /* SimpleYoutube.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3040329D38D2B00069871 /* SimpleYoutube.xcdatamodeld */; };
 		1CC3041029D38D2B00069871 /* SimpleYoutubeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3040F29D38D2B00069871 /* SimpleYoutubeTests.swift */; };
 		1CC3041B29D38D2B00069871 /* SimpleYoutubeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3041A29D38D2B00069871 /* SimpleYoutubeUITests.swift */; };
+		1CC3043529D3E5EB00069871 /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3043429D3E5EB00069871 /* PlaylistView.swift */; };
+		1CC3043A29D3E60100069871 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3043929D3E60100069871 /* VideoView.swift */; };
+		1CC3044F29D804FB00069871 /* URLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3044E29D804FB00069871 /* URLImage.swift */; };
+		1CC3045429D850BD00069871 /* YoutubeVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3045329D850BD00069871 /* YoutubeVideoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		1CC3041629D38D2B00069871 /* SimpleYoutubeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleYoutubeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CC3041A29D38D2B00069871 /* SimpleYoutubeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleYoutubeUITests.swift; sourceTree = "<group>"; };
 		1CC3041C29D38D2B00069871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1CC3043429D3E5EB00069871 /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
+		1CC3043929D3E60100069871 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
+		1CC3044E29D804FB00069871 /* URLImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImage.swift; sourceTree = "<group>"; };
+		1CC3045329D850BD00069871 /* YoutubeVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeVideoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +107,9 @@
 		1CC303F729D38D2700069871 /* SimpleYoutube */ = {
 			isa = PBXGroup;
 			children = (
+				1CC3043E29D3E60C00069871 /* View */,
 				1CC303F829D38D2700069871 /* SimpleYoutubeApp.swift */,
+				1CC3044229D7ED5600069871 /* Components */,
 				1CC303FA29D38D2700069871 /* ContentView.swift */,
 				1CC303FC29D38D2B00069871 /* Assets.xcassets */,
 				1CC3040129D38D2B00069871 /* Persistence.swift */,
@@ -134,6 +144,24 @@
 				1CC3041C29D38D2B00069871 /* Info.plist */,
 			);
 			path = SimpleYoutubeUITests;
+			sourceTree = "<group>";
+		};
+		1CC3043E29D3E60C00069871 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1CC3043429D3E5EB00069871 /* PlaylistView.swift */,
+				1CC3043929D3E60100069871 /* VideoView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1CC3044229D7ED5600069871 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1CC3044E29D804FB00069871 /* URLImage.swift */,
+				1CC3045329D850BD00069871 /* YoutubeVideoView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,10 +293,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CC3045429D850BD00069871 /* YoutubeVideoView.swift in Sources */,
+				1CC3044F29D804FB00069871 /* URLImage.swift in Sources */,
+				1CC3043A29D3E60100069871 /* VideoView.swift in Sources */,
 				1CC3040229D38D2B00069871 /* Persistence.swift in Sources */,
 				1CC3040529D38D2B00069871 /* SimpleYoutube.xcdatamodeld in Sources */,
 				1CC303FB29D38D2700069871 /* ContentView.swift in Sources */,
 				1CC303F929D38D2700069871 /* SimpleYoutubeApp.swift in Sources */,
+				1CC3043529D3E5EB00069871 /* PlaylistView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
