@@ -41,6 +41,10 @@ struct VideoRowViewModel: Identifiable {
         return dateFormatter.string(from: date)
     }
     
+    var thumbnails: Playlist.Thumbnails {
+        return item.snippet.thumbnails
+    }
+    
     func createVideoViewModel() -> VideoViewModel {
         return VideoViewModel(data: VideoViewModel.VideoData(videoId: videoId,
                                                              title: title,

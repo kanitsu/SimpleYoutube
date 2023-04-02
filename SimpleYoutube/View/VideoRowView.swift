@@ -17,7 +17,7 @@ struct VideoRowView: View {
     var body: some View {
         VStack(alignment: .leading) {
             NavigationLink(destination: VideoView(viewModel: viewModel.createVideoViewModel())) {
-            YoutubeThumbView(videoId: viewModel.videoId)
+                YoutubeThumbView(thumbnails: viewModel.thumbnails)
                 .frame(maxWidth: .infinity, minHeight: 240)
             }
             VideoInfoView(title: viewModel.title, owner: viewModel.owner, publishedAt: viewModel.publishedAt, photo: nil)
