@@ -70,13 +70,6 @@
             ReferencedContainer = "container:SimpleYoutube.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "YOUTUBE_API_KEY"
-            value = "INSERT_YOUR_API_KEY_HERE"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
