@@ -10,14 +10,28 @@ import WebKit
 
 struct VideoView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    let videoId: String
+    
+    private let viewModel: VideoViewModel
+    
+    init(viewModel: VideoViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
-            YoutubeVideoView(videoId: videoId)
-            VideoInfoView()
-            Text("Video Details")
-            Text("Comments")
+            YoutubeVideoView(videoId: viewModel.videoId)
+            VideoInfoView(title: viewModel.title, owner: viewModel.owner, publishedAt: viewModel.publishedAt, photo: nil)
+            Spacer()
+            Divider()
+            ScrollView {
+                Text(viewModel.description)
+            }
+            .padding(.horizontal, 10)
+            Divider()
+            ScrollView {
+                Text("Comments")
+            }
+            .padding(.horizontal, 10)
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton)
@@ -35,22 +49,47 @@ struct VideoView: View {
 }
 
 struct VideoInfoView: View {
+    let title: String
+    let owner: String
+    let publishedAt: String
+    let photo: String?
+    
     var body: some View {
         HStack(alignment: .center) {
-            Text("Author Photo")
+            if let photo = photo {
+                Text(photo)
+                Divider()
+            }
             VStack(alignment: .leading) {
-                Text("Video Title")
+                Spacer()
+                Text(title)
+                    .frame(minHeight: 40)
+                    .lineLimit(2)
+                    .truncationMode(.tail)
+                    .multilineTextAlignment(.leading)
+                Spacer()
+                Divider()
                 HStack(alignment: .center) {
-                    Text("Author Name")
-                    Text("Upload Date")
+                    Text(owner)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+                    Spacer()
+                    Divider()
+                    Text(publishedAt)
+                        .frame(width: 80)
+                        .font(.footnote)
+                        .multilineTextAlignment(.trailing)
                 }
+                .frame(height: 40)
             }
         }
+        .padding(.horizontal, 10)
+        .frame(maxHeight: 120)
     }
 }
 
-struct VideoView_Previews: PreviewProvider {
-    static var previews: some View {
-        VideoView(videoId: "4HcSMGobl94")
-    }
-}
+//struct VideoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        VideoView(videoId: "4HcSMGobl94")
+//    }
+//}

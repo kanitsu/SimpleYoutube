@@ -15,28 +15,32 @@ struct VideoRowView: View {
     }
     
     var body: some View {
-        NavigationLink(destination: VideoView(videoId: viewModel.videoId)) {
-            VStack(alignment: .leading) {
-                YoutubeThumbView(videoId: viewModel.videoId)
-                    .frame(maxWidth: .infinity, minHeight: 240)
-                VideoInfoView()
+        VStack(alignment: .leading) {
+            NavigationLink(destination: VideoView(viewModel: viewModel.createVideoViewModel())) {
+            YoutubeThumbView(videoId: viewModel.videoId)
+                .frame(maxWidth: .infinity, minHeight: 240)
             }
+            VideoInfoView(title: viewModel.title, owner: viewModel.owner, publishedAt: viewModel.publishedAt, photo: nil)
         }
     }
 }
 
-struct VideoRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        VideoRowView(viewModel:
-            VideoRowViewModel.init(item:
-                Playlist.Item(
-                    kind: "",
-                    snippet:
-                        Playlist.Snippet(resourceId:
-                            Playlist.ResourceId(videoId: "VdL4HKqG1GM")
-                    )
-                )
-            )
-        )
-    }
-}
+//struct VideoRowView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        VideoRowView(viewModel:
+//            VideoRowViewModel.init(item:
+//                Playlist.Item(kind: "", snippet:
+//                    Playlist.Snippet(title: "", publishedAt: "", thumbnails:
+//                        Playlist.Thumbnails(default:
+//                            Playlist.Thumbnail(url: "", width: 0, height: 0),
+//                                medium: nil,
+//                                high: nil,
+//                                standard: nil,
+//                                maxres: nil
+//                        ), resourceId: Playlist.ResourceId(kind: "", videoId: "VdL4HKqG1GM")
+//                    )
+//                )
+//            )
+//        )
+//    }
+//}

@@ -24,6 +24,7 @@
 		1CC3046B29D8883B00069871 /* YoutubeThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3046A29D8883B00069871 /* YoutubeThumbView.swift */; };
 		1CC3047029D8987500069871 /* VideoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3046F29D8987400069871 /* VideoRowView.swift */; };
 		1CC3047529D8988C00069871 /* VideoRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3047429D8988C00069871 /* VideoRowViewModel.swift */; };
+		1CC304C829D9F2CE00069871 /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC304C729D9F2CB00069871 /* VideoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		1CC3046A29D8883B00069871 /* YoutubeThumbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeThumbView.swift; sourceTree = "<group>"; };
 		1CC3046F29D8987400069871 /* VideoRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRowView.swift; sourceTree = "<group>"; };
 		1CC3047429D8988C00069871 /* VideoRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRowViewModel.swift; sourceTree = "<group>"; };
+		1CC304C729D9F2CB00069871 /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 			children = (
 				1CC3045929D8840300069871 /* PlaylistViewModel.swift */,
 				1CC3047429D8988C00069871 /* VideoRowViewModel.swift */,
+				1CC304C729D9F2CB00069871 /* VideoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				1CC3045429D850BD00069871 /* YoutubeVideoView.swift in Sources */,
 				1CC3044F29D804FB00069871 /* URLImage.swift in Sources */,
 				1CC3047529D8988C00069871 /* VideoRowViewModel.swift in Sources */,
+				1CC304C829D9F2CE00069871 /* VideoViewModel.swift in Sources */,
 				1CC3043A29D3E60100069871 /* VideoView.swift in Sources */,
 				1CC3040229D38D2B00069871 /* Persistence.swift in Sources */,
 				1CC3046B29D8883B00069871 /* YoutubeThumbView.swift in Sources */,

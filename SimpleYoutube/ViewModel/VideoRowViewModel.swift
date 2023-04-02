@@ -21,6 +21,34 @@ struct VideoRowViewModel: Identifiable {
     var videoId: String {
         return item.snippet.resourceId.videoId
     }
+    
+    var title: String {
+        return item.snippet.title
+    }
+    
+    var owner: String {
+        return item.snippet.videoOwnerChannelTitle
+    }
+    
+    var publishedAt: String {
+        let isoDateFormatter = ISO8601DateFormatter()
+        guard let date = isoDateFormatter.date(from: item.snippet.publishedAt) else {
+            return item.snippet.publishedAt
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.timeZone = TimeZone(identifier: "GMT+8")
+        return dateFormatter.string(from: date)
+    }
+    
+    func createVideoViewModel() -> VideoViewModel {
+        return VideoViewModel(data: VideoViewModel.VideoData(videoId: videoId,
+                                                             title: title,
+                                                             owner: owner,
+                                                             publishedAt: publishedAt,
+                                                             description: item.snippet.description
+        ))
+    }
 }
 
 extension VideoRowViewModel: Hashable {
