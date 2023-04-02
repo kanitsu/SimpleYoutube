@@ -108,6 +108,15 @@ private extension PlaylistFetcher {
         //https://petstore.swagger.io/v2/pet/findByStatus?status=available
         //http://localhost:3000/following_list
         
+        let processInfo = ProcessInfo.processInfo
+        if let apiKey = processInfo.environment["YOUTUBE_API_KEY"] {
+            // Use the API key
+            Logger().info("API KEY: \(apiKey)")
+        } else {
+            // API key not found
+            Logger().info("API key not set")
+        }
+        
         return components
     }
 }
