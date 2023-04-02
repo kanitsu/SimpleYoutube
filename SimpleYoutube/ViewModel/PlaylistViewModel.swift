@@ -7,10 +7,9 @@
 
 import Combine
 import Foundation
-import os.log
 
 class PlaylistViewModel: ObservableObject {
-    @Published var id: String = ""
+    @Published var id: String = "PLS3XGZxi7cBWCGHov7-D4fhUk1yhUK0o1"
     @Published var dataSource: [VideoRowViewModel] = []
     
     private let playlistFetcher: PlaylistFetchable
@@ -21,14 +20,28 @@ class PlaylistViewModel: ObservableObject {
         scheduler: DispatchQueue = DispatchQueue(label: "PlaylistViewModel")
     ) {
         self.playlistFetcher = playlistFetcher
-        fetchPlaylist(forId: id)
+        
+        do {
+            try fetchPlaylist(forId: id)
+        }
+        catch {
+            fatalError("\(error.localizedDescription)")
+        }
     }
     
-    func fetchPlaylist(forId id: String) {
-        playlistFetcher.getPlaylist(forId: id)
-//            .map { response in
-//                response.list.map(VideoRowViewModel.init)
-//            }
+    func fetchPlaylist(forId id: String) throws {
+        var publisher : AnyPublisher<Playlist, PlaylistError>
+        do {
+            try publisher = playlistFetcher.getPlaylist(forId: id)
+        }
+        catch {
+            throw error
+        }
+        
+        publisher
+            .map { response in
+                response.items.map(VideoRowViewModel.init)
+            }
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { [weak self] value in
@@ -41,13 +54,7 @@ class PlaylistViewModel: ObservableObject {
                     }
                 }, receiveValue: { [weak self] playlist in
                     guard let self = self else { return }
-                    //self.dataSource = playlist
-                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(resourceId: Playlist.ResourceId(videoId: "VdL4HKqG1GM"))))
-                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(resourceId: Playlist.ResourceId(videoId: "wcjjw_u7ogo"))))
-                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(resourceId: Playlist.ResourceId(videoId: "VVis4k49UW8"))))
-                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(resourceId: Playlist.ResourceId(videoId: "XLw8P9VKETw"))))
-                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(resourceId: Playlist.ResourceId(videoId: "8hPJSTiNjok"))))
-                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(resourceId: Playlist.ResourceId(videoId: "XQkZdBJ-sOY"))))
+                    self.dataSource = playlist
                 }
             )
             .store(in: &disposables)
@@ -57,7 +64,7 @@ class PlaylistViewModel: ObservableObject {
 protocol PlaylistFetchable {
     func getPlaylist(
         forId id: String
-    ) -> AnyPublisher<Test, PlaylistError>
+    ) throws -> AnyPublisher<Playlist, PlaylistError>
 }
 
 class PlaylistFetcher {
@@ -71,8 +78,20 @@ class PlaylistFetcher {
 extension PlaylistFetcher: PlaylistFetchable {
     func getPlaylist(
         forId id: String
-    ) -> AnyPublisher<Test, PlaylistError> {
-        return fetch(with: getPlaylistItem(withId: id))
+    ) throws -> AnyPublisher<Playlist, PlaylistError> {
+        var urlComp: URLComponents
+        do {
+            try urlComp = getPlaylistItem(withId: id)
+        } catch {
+            throw error
+        }
+        
+//        if let url = urlComp.url {
+//            let urlString = url.absoluteString
+//            print("Full URL: \(urlString)")
+//        }
+        
+        return fetch(with: urlComp)
     }
     
     private func fetch<T>(
@@ -96,26 +115,23 @@ extension PlaylistFetcher: PlaylistFetchable {
 private extension PlaylistFetcher {
     func getPlaylistItem(
         withId id: String
-    ) -> URLComponents {
-        var components = URLComponents()
-        components.scheme = "http"
-        components.host = "localhost"
-        components.port = 3000
-        components.path = "/following_list"
-        components.queryItems = [
-            //URLQueryItem(name: "status", value: "available")
-        ]
-        //https://petstore.swagger.io/v2/pet/findByStatus?status=available
-        //http://localhost:3000/following_list
-        
-        let processInfo = ProcessInfo.processInfo
-        if let apiKey = processInfo.environment["YOUTUBE_API_KEY"] {
-            // Use the API key
-            Logger().info("API KEY: \(apiKey)")
-        } else {
-            // API key not found
-            Logger().info("API key not set")
+    ) throws -> URLComponents {
+        guard let infoDict = Bundle.main.infoDictionary, let apiKey = infoDict["YOUTUBE_API_KEY"] as? String else {
+            throw PlaylistError.setting(description: "Unable to read Info.plist or YOUTUBE_API_KEY not defined in it.")
         }
+        
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "youtube.googleapis.com"
+        components.path = "/youtube/v3/playlistItems"
+        components.queryItems = [
+            URLQueryItem(name: "part", value: "snippet"),
+            URLQueryItem(name: "maxResults", value: "30"),
+            URLQueryItem(name: "playlistId", value: id),
+            URLQueryItem(name: "key", value: apiKey)
+            
+        ]
+        //https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2Cstatus&maxResults=25&playlistId=PLF4D8851BA7D9DA6E&key=
         
         return components
     }
@@ -125,7 +141,7 @@ func decode<T: Decodable>(_ data: Data) -> AnyPublisher<T, PlaylistError> {
     let decoder = JSONDecoder()
     decoder.dateDecodingStrategy = .secondsSince1970
     
-    Logger().info("The data: \(data.toString()!)")
+    //print("The data: \(data.toString()!)")
     
     return Just(data)
         .decode(type: T.self, decoder: decoder)
@@ -136,6 +152,7 @@ func decode<T: Decodable>(_ data: Data) -> AnyPublisher<T, PlaylistError> {
 }
 
 enum PlaylistError: Error {
+    case setting(description: String)
     case parsing(description: String)
     case network(description: String)
 }

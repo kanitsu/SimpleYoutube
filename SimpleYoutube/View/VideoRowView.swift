@@ -29,8 +29,12 @@ struct VideoRowView_Previews: PreviewProvider {
     static var previews: some View {
         VideoRowView(viewModel:
             VideoRowViewModel.init(item:
-                Playlist.Item(resourceId:
-                    Playlist.ResourceId(videoId: "VdL4HKqG1GM")
+                Playlist.Item(
+                    kind: "",
+                    snippet:
+                        Playlist.Snippet(resourceId:
+                            Playlist.ResourceId(videoId: "VdL4HKqG1GM")
+                    )
                 )
             )
         )

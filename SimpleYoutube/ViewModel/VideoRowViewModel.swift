@@ -19,7 +19,7 @@ struct VideoRowViewModel: Identifiable {
     }
     
     var videoId: String {
-        return item.resourceId.videoId
+        return item.snippet.resourceId.videoId
     }
 }
 

@@ -11,18 +11,15 @@ struct Playlist: Codable {
     var items: [Item]
     
     struct Item: Codable {
+        let kind: String
+        let snippet: Snippet
+    }
+    
+    struct Snippet: Codable {
         let resourceId: ResourceId
     }
     
     struct ResourceId: Codable {
         let videoId: String
-    }
-}
-
-struct Test: Codable {
-    var items: [Item]
-    
-    struct Item: Codable {
-        let title: String
     }
 }
