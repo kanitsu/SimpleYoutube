@@ -15,20 +15,20 @@ struct VideoRowViewModel: Identifiable {
     }
     
     var id: String {
-        return code
+        return videoId
     }
     
-    var code: String {
-        return item.code
+    var videoId: String {
+        return item.resourceId.videoId
     }
 }
 
 extension VideoRowViewModel: Hashable {
   static func == (lhs: VideoRowViewModel, rhs: VideoRowViewModel) -> Bool {
-    return lhs.code == rhs.code
+    return lhs.videoId == rhs.videoId
   }
 
   func hash(into hasher: inout Hasher) {
-    hasher.combine(self.code)
+    hasher.combine(self.videoId)
   }
 }

@@ -8,10 +8,14 @@
 import Foundation
 
 struct Playlist: Codable {
-    var list: [Item]
+    var items: [Item]
     
     struct Item: Codable {
-        let code: String
+        let resourceId: ResourceId
+    }
+    
+    struct ResourceId: Codable {
+        let videoId: String
     }
 }
 
@@ -20,7 +24,5 @@ struct Test: Codable {
     
     struct Item: Codable {
         let title: String
-        let cover: String
-        let play_url: String
     }
 }

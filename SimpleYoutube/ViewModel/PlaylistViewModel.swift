@@ -42,12 +42,12 @@ class PlaylistViewModel: ObservableObject {
                 }, receiveValue: { [weak self] playlist in
                     guard let self = self else { return }
                     //self.dataSource = playlist
-                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(code: "VdL4HKqG1GM")))
-                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(code: "wcjjw_u7ogo")))
-                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(code: "VVis4k49UW8")))
-                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(code: "XLw8P9VKETw")))
-                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(code: "8hPJSTiNjok")))
-                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(code: "XQkZdBJ-sOY")))
+                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(resourceId: Playlist.ResourceId(videoId: "VdL4HKqG1GM"))))
+                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(resourceId: Playlist.ResourceId(videoId: "wcjjw_u7ogo"))))
+                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(resourceId: Playlist.ResourceId(videoId: "VVis4k49UW8"))))
+                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(resourceId: Playlist.ResourceId(videoId: "XLw8P9VKETw"))))
+                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(resourceId: Playlist.ResourceId(videoId: "8hPJSTiNjok"))))
+                    self.dataSource.append(VideoRowViewModel.init(item: Playlist.Item(resourceId: Playlist.ResourceId(videoId: "XQkZdBJ-sOY"))))
                 }
             )
             .store(in: &disposables)
@@ -136,4 +136,3 @@ extension Data {
         return String(data: self, encoding: .utf8)
     }
 }
-
