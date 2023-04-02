@@ -10,7 +10,13 @@ import SwiftUI
 @main
 struct SimpleYoutubeApp: App {
     let persistenceController = PersistenceController.shared
-    let playlistViewModel = PlaylistViewModel()
+    let fetcher: PlaylistFetcher
+    let playlistViewModel: PlaylistViewModel
+    
+    init() {
+        fetcher = PlaylistFetcher()
+        playlistViewModel = PlaylistViewModel(playlistFetcher: fetcher)
+    }
 
     var body: some Scene {
         WindowGroup {

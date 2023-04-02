@@ -14,3 +14,13 @@ struct Playlist: Codable {
         let code: String
     }
 }
+
+struct Test: Codable {
+    var items: [Item]
+    
+    struct Item: Codable {
+        let title: String
+        let cover: String
+        let play_url: String
+    }
+}
