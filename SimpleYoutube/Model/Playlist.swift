@@ -9,7 +9,7 @@ import Foundation
 
 struct Playlist: Codable {
     var items: [Item]
-    var nextPageToken: String
+    var nextPageToken: String?
     
     struct Item: Codable {
         let kind: String
@@ -21,13 +21,13 @@ struct Playlist: Codable {
         let publishedAt: String
         let thumbnails: Thumbnails
         let resourceId: ResourceId
-        let videoOwnerChannelTitle: String
-        let videoOwnerChannelId: String
+        let videoOwnerChannelTitle: String?
+        let videoOwnerChannelId: String?
         let description: String
     }
     
     struct Thumbnails: Codable {
-        let `default`: Thumbnail
+        let `default`: Thumbnail?
         let medium: Thumbnail?
         let high: Thumbnail?
         let standard: Thumbnail?

@@ -15,7 +15,9 @@ struct YoutubeThumbView: View {
     }
     
     var url: String {
-        let thumbnail = thumbnails.maxres ?? thumbnails.standard ?? thumbnails.high ?? thumbnails.medium ?? thumbnails.default
+        guard let thumbnail = thumbnails.maxres ?? thumbnails.standard ?? thumbnails.high ?? thumbnails.medium ?? thumbnails.default else {
+            return ""
+        }
         return thumbnail.url
     }
     

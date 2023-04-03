@@ -9,10 +9,11 @@ import Combine
 import Foundation
 
 class PlaylistViewModel: ObservableObject {
-    @Published var id: String = "PLS3XGZxi7cBWCGHov7-D4fhUk1yhUK0o1"
+    //@Published var id: String = "PLS3XGZxi7cBWCGHov7-D4fhUk1yhUK0o1"
+    @Published var id: String = "PLJxnQXiytA_TNtGCQKyjz_KKMiGKjXRAL"
     @Published var dataSource: [VideoRowViewModel] = []
     @Published var loading: Bool = false;
-    @Published var newContentAdded: Bool = false;
+    @Published var hasMore: Bool = true;
     
     private let playlistFetcher: PlaylistFetchable
     private var disposables = Set<AnyCancellable>()
@@ -30,7 +31,6 @@ class PlaylistViewModel: ObservableObject {
         if !loading {
             do {
                 loading = true
-                newContentAdded = false;
                 try fetchPlaylist(forId: id)
             }
             catch {
@@ -62,11 +62,16 @@ class PlaylistViewModel: ObservableObject {
                     }
                 }, receiveValue: { [weak self] response in
                     guard let self = self else { return }
-                    let playlist = response.items.map(VideoRowViewModel.init)
+                    let playlist = response.items.filter { $0.snippet.videoOwnerChannelTitle != nil }
+                        .map(VideoRowViewModel.init)
                     self.dataSource.append(contentsOf: playlist)
-                    self.nextToken = response.nextPageToken
-                    self.newContentAdded = true
                     self.contentPerPage = 20
+                    guard let nextPageToken = response.nextPageToken else {
+                        self.nextToken = ""
+                        self.hasMore = false
+                        return
+                    }
+                    self.nextToken = nextPageToken
                 }
             )
             .store(in: &disposables)
@@ -102,10 +107,10 @@ extension PlaylistFetcher: PlaylistFetchable {
             throw error
         }
         
-//        if let url = urlComp.url {
-//            let urlString = url.absoluteString
-//            print("Full URL: \(urlString)")
-//        }
+        if let url = urlComp.url {
+            let urlString = url.absoluteString
+            print("Full URL: \(urlString)")
+        }
         
         return fetch(with: urlComp)
     }
@@ -160,7 +165,7 @@ func decode<T: Decodable>(_ data: Data) -> AnyPublisher<T, PlaylistError> {
     let decoder = JSONDecoder()
     decoder.dateDecodingStrategy = .secondsSince1970
     
-    //print("The data: \(data.toString()!)")
+    print("The data: \(data.toString()!)")
     
     return Just(data)
         .decode(type: T.self, decoder: decoder)

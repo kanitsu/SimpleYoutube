@@ -27,7 +27,7 @@ struct VideoRowViewModel: Identifiable {
     }
     
     var owner: String {
-        return item.snippet.videoOwnerChannelTitle
+        return item.snippet.videoOwnerChannelTitle ?? "Unknown"
     }
     
     var publishedAt: String {
