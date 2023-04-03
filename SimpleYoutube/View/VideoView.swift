@@ -26,15 +26,13 @@ struct VideoView: View {
             ScrollView {
                 Text(viewModel.description)
             }
-            .padding(.horizontal, 10)
+                .padding(.horizontal, 10)
             Divider()
-            ScrollView {
-                Text("Comments")
-            }
-            .padding(.horizontal, 10)
+            CommentsView(viewModel: CommentsViewModel(videoId: viewModel.videoId))
+                .padding(.horizontal, 10)
         }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: backButton)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: backButton)
     }
     
     var backButton : some View { Button(action: {

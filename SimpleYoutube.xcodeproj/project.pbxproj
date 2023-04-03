@@ -25,6 +25,11 @@
 		1CC3047029D8987500069871 /* VideoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3046F29D8987400069871 /* VideoRowView.swift */; };
 		1CC3047529D8988C00069871 /* VideoRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3047429D8988C00069871 /* VideoRowViewModel.swift */; };
 		1CC304C829D9F2CE00069871 /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC304C729D9F2CB00069871 /* VideoViewModel.swift */; };
+		1CC304D629DAB7D800069871 /* PlaylistAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC304D529DAB7D700069871 /* PlaylistAPI.swift */; };
+		1CC304DB29DAC2D900069871 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC304DA29DAC2D900069871 /* CommentsView.swift */; };
+		1CC304E029DAC47000069871 /* CommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC304DF29DAC46F00069871 /* CommentsViewModel.swift */; };
+		1CC304E529DAC55200069871 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC304E429DAC55200069871 /* Comments.swift */; };
+		1CC304EA29DAC56600069871 /* CommentsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC304E929DAC56600069871 /* CommentsAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +74,11 @@
 		1CC3046F29D8987400069871 /* VideoRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRowView.swift; sourceTree = "<group>"; };
 		1CC3047429D8988C00069871 /* VideoRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRowViewModel.swift; sourceTree = "<group>"; };
 		1CC304C729D9F2CB00069871 /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
+		1CC304D529DAB7D700069871 /* PlaylistAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistAPI.swift; sourceTree = "<group>"; };
+		1CC304DA29DAC2D900069871 /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
+		1CC304DF29DAC46F00069871 /* CommentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewModel.swift; sourceTree = "<group>"; };
+		1CC304E429DAC55200069871 /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
+		1CC304E929DAC56600069871 /* CommentsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +176,7 @@
 				1CC3043429D3E5EB00069871 /* PlaylistView.swift */,
 				1CC3043929D3E60100069871 /* VideoView.swift */,
 				1CC3046F29D8987400069871 /* VideoRowView.swift */,
+				1CC304DA29DAC2D900069871 /* CommentsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -186,6 +197,7 @@
 				1CC3045929D8840300069871 /* PlaylistViewModel.swift */,
 				1CC3047429D8988C00069871 /* VideoRowViewModel.swift */,
 				1CC304C729D9F2CB00069871 /* VideoViewModel.swift */,
+				1CC304DF29DAC46F00069871 /* CommentsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -194,6 +206,9 @@
 			isa = PBXGroup;
 			children = (
 				1CC3046229D886C500069871 /* Playlist.swift */,
+				1CC304D529DAB7D700069871 /* PlaylistAPI.swift */,
+				1CC304E429DAC55200069871 /* Comments.swift */,
+				1CC304E929DAC56600069871 /* CommentsAPI.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -334,13 +349,18 @@
 				1CC304C829D9F2CE00069871 /* VideoViewModel.swift in Sources */,
 				1CC3043A29D3E60100069871 /* VideoView.swift in Sources */,
 				1CC3040229D38D2B00069871 /* Persistence.swift in Sources */,
+				1CC304D629DAB7D800069871 /* PlaylistAPI.swift in Sources */,
 				1CC3046B29D8883B00069871 /* YoutubeThumbView.swift in Sources */,
 				1CC3040529D38D2B00069871 /* SimpleYoutube.xcdatamodeld in Sources */,
 				1CC303FB29D38D2700069871 /* ContentView.swift in Sources */,
+				1CC304EA29DAC56600069871 /* CommentsAPI.swift in Sources */,
+				1CC304E529DAC55200069871 /* Comments.swift in Sources */,
 				1CC303F929D38D2700069871 /* SimpleYoutubeApp.swift in Sources */,
 				1CC3043529D3E5EB00069871 /* PlaylistView.swift in Sources */,
 				1CC3046329D886C500069871 /* Playlist.swift in Sources */,
+				1CC304DB29DAC2D900069871 /* CommentsView.swift in Sources */,
 				1CC3047029D8987500069871 /* VideoRowView.swift in Sources */,
+				1CC304E029DAC47000069871 /* CommentsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

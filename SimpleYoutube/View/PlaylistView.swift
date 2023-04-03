@@ -21,26 +21,23 @@ struct PlaylistView: View {
                     ForEach(viewModel.dataSource, content: VideoRowView.init(viewModel:))
                     if viewModel.hasMore {
                         ProgressView()
-                            .frame(width: .infinity, height: 60, alignment: .center)
+                            .frame(maxWidth: .infinity, minHeight: 60, alignment: .center)
                             .onAppear {
                                 viewModel.addMoreContent()
                             }
                     }
                 }
             }
-            .navigationBarTitle(Text("Simple Youtube"), displayMode: .inline)
-            .navigationBarItems(trailing:
-                Button(action: {
-                    // Handle button tap
-                }) {
-                    Image(systemName: "magnifyingglass")
-                }
-            )
+                .navigationBarTitle(Text("Simple Youtube"), displayMode: .inline)
+                .navigationBarItems(trailing:
+                    Button(action: {
+                        // Handle button tap
+                    }) {
+                        Image(systemName: "magnifyingglass")
+                    }
+                )
         }
     }
-}
-
-private extension PlaylistView {
 }
 
 //struct PlaylistView_Previews: PreviewProvider {
