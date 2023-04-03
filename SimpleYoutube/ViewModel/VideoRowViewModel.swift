@@ -31,14 +31,7 @@ struct VideoRowViewModel: Identifiable {
     }
     
     var publishedAt: String {
-        let isoDateFormatter = ISO8601DateFormatter()
-        guard let date = isoDateFormatter.date(from: item.snippet.publishedAt) else {
-            return item.snippet.publishedAt
-        }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(identifier: "GMT+8")
-        return dateFormatter.string(from: date)
+        return reformatDate(input: item.snippet.publishedAt)
     }
     
     var thumbnails: Playlist.Thumbnails {

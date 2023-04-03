@@ -12,7 +12,6 @@ struct Playlist: Codable {
     var nextPageToken: String?
     
     struct Item: Codable {
-        let kind: String
         let snippet: Snippet
     }
     
@@ -41,7 +40,6 @@ struct Playlist: Codable {
     }
     
     struct ResourceId: Codable {
-        let kind: String
         let videoId: String
     }
 }

@@ -40,7 +40,7 @@ class PlaylistViewModel: ObservableObject {
     }
     
     func fetchPlaylist(forId id: String) throws {
-        var publisher : AnyPublisher<Playlist, PlaylistError>
+        var publisher : AnyPublisher<Playlist, APIError>
         do {
             try publisher = playlistFetcher.getPlaylist(forId: id, withLimit: contentPerPage, andToken: nextToken)
         }

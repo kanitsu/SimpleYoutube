@@ -16,7 +16,9 @@ struct CommentsView: View {
     
     var body: some View {
         ScrollView {
-            Text("Comments")
+            LazyVStack {
+                ForEach(viewModel.dataSource, content: CommentRowView.init(viewModel:))
+            }
         }
     }
 }
