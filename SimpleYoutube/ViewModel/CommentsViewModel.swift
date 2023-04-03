@@ -19,9 +19,11 @@ class CommentsViewModel: ObservableObject {
     private var disposables = Set<AnyCancellable>()
     private var nextToken: String = ""
     
-    init(videoId: String) {
+    init(
+        videoId: String,
+        scheduler: DispatchQueue = DispatchQueue(label: "CommentsViewModel")
+    ) {
         self.videoId = videoId
-        
         self.commentsFetcher = CommentsFetcher()
     }
     

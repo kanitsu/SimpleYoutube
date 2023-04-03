@@ -41,7 +41,7 @@ func decode<T: Decodable>(_ data: Data) -> AnyPublisher<T, APIError> {
     let decoder = JSONDecoder()
     decoder.dateDecodingStrategy = .secondsSince1970
     
-    //print("The data: \(data.toString()!)")
+    // print("The data: \(data.toString()!)")
     
     return Just(data)
         .decode(type: T.self, decoder: decoder)

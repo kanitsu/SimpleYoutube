@@ -23,7 +23,10 @@ struct VideoView: View {
     var body: some View {
         VStack(alignment: .leading) {
             YoutubeVideoView(videoId: viewModel.videoId)
-            VideoInfoView(title: viewModel.title, owner: viewModel.owner, publishedAt: viewModel.publishedAt, photo: nil)
+                .frame(maxHeight: 240)
+            Spacer()
+            VideoInfoView(viewModel: viewModel)
+                .frame(maxHeight: 100)
             Spacer()
             Divider()
             VStack(alignment: .center) {
@@ -34,6 +37,8 @@ struct VideoView: View {
                         Image(systemName: "chevron.up")
                         Spacer()
                     }
+                    .frame(maxHeight: 10)
+                    .font(.footnote)
                     .foregroundColor(.blue)
                     .padding(.horizontal, 10)
                     ScrollView {
@@ -47,6 +52,8 @@ struct VideoView: View {
                         Image(systemName: "chevron.down")
                         Spacer()
                     }
+                    .frame(maxHeight: 10)
+                    .font(.footnote)
                     .foregroundColor(.blue)
                     .padding(.horizontal, 10)
                 }
@@ -63,6 +70,7 @@ struct VideoView: View {
                         Image(systemName: "chevron.up")
                         Spacer()
                     }
+                    .font(.footnote)
                     .foregroundColor(.blue)
                     .padding(.horizontal, 10)
                     CommentsView(viewModel: CommentsViewModel(videoId: viewModel.videoId))
@@ -74,12 +82,17 @@ struct VideoView: View {
                         Image(systemName: "chevron.down")
                         Spacer()
                     }
+                    .font(.footnote)
                     .foregroundColor(.blue)
                     .padding(.horizontal, 10)
                 }
             }
             .onTapGesture {
                 showComment = !showComment
+            }
+            if !showDescription && !showComment {
+                Spacer()
+                    .frame(maxHeight: .infinity)
             }
         }
             .navigationBarBackButtonHidden(true)
@@ -94,46 +107,6 @@ struct VideoView: View {
                 Text("Playlist")
             }
         }
-    }
-}
-
-struct VideoInfoView: View {
-    let title: String
-    let owner: String
-    let publishedAt: String
-    let photo: String?
-    
-    var body: some View {
-        HStack(alignment: .center) {
-            if let photo = photo {
-                Text(photo)
-                Divider()
-            }
-            VStack(alignment: .leading) {
-                Spacer()
-                Text(title)
-                    .frame(minHeight: 40)
-                    .lineLimit(2)
-                    .truncationMode(.tail)
-                    .multilineTextAlignment(.leading)
-                Spacer()
-                Divider()
-                HStack(alignment: .center) {
-                    Text(owner)
-                        .lineLimit(1)
-                        .truncationMode(.tail)
-                    Spacer()
-                    Divider()
-                    Text(publishedAt)
-                        .frame(width: 80)
-                        .font(.footnote)
-                        .multilineTextAlignment(.trailing)
-                }
-                .frame(height: 40)
-            }
-        }
-        .padding(.horizontal, 10)
-        .frame(maxHeight: 120)
     }
 }
 

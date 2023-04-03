@@ -33,6 +33,9 @@
 		1CC304EF29DACEDE00069871 /* CommentRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC304EE29DACEDE00069871 /* CommentRowView.swift */; };
 		1CC304F729DACF1F00069871 /* CommentRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC304F629DACF1F00069871 /* CommentRowViewModel.swift */; };
 		1CC3050329DAE31500069871 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3050229DAE31500069871 /* Util.swift */; };
+		1CC3051329DB4CEC00069871 /* VideoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3051229DB4CEB00069871 /* VideoInfoView.swift */; };
+		1CC3051D29DB541100069871 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3051C29DB541100069871 /* Channel.swift */; };
+		1CC3052529DB544600069871 /* ChannelAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3052429DB544600069871 /* ChannelAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +88,9 @@
 		1CC304EE29DACEDE00069871 /* CommentRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowView.swift; sourceTree = "<group>"; };
 		1CC304F629DACF1F00069871 /* CommentRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowViewModel.swift; sourceTree = "<group>"; };
 		1CC3050229DAE31500069871 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		1CC3051229DB4CEB00069871 /* VideoInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfoView.swift; sourceTree = "<group>"; };
+		1CC3051C29DB541100069871 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		1CC3052429DB544600069871 /* ChannelAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +191,7 @@
 				1CC3043429D3E5EB00069871 /* PlaylistView.swift */,
 				1CC3043929D3E60100069871 /* VideoView.swift */,
 				1CC3046F29D8987400069871 /* VideoRowView.swift */,
+				1CC3051229DB4CEB00069871 /* VideoInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -218,6 +225,8 @@
 				1CC304E929DAC56600069871 /* CommentsAPI.swift */,
 				1CC3046229D886C500069871 /* Playlist.swift */,
 				1CC304D529DAB7D700069871 /* PlaylistAPI.swift */,
+				1CC3051C29DB541100069871 /* Channel.swift */,
+				1CC3052429DB544600069871 /* ChannelAPI.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -360,11 +369,14 @@
 				1CC3043A29D3E60100069871 /* VideoView.swift in Sources */,
 				1CC3040229D38D2B00069871 /* Persistence.swift in Sources */,
 				1CC304D629DAB7D800069871 /* PlaylistAPI.swift in Sources */,
+				1CC3052529DB544600069871 /* ChannelAPI.swift in Sources */,
 				1CC3046B29D8883B00069871 /* YoutubeThumbView.swift in Sources */,
 				1CC3040529D38D2B00069871 /* SimpleYoutube.xcdatamodeld in Sources */,
 				1CC3050329DAE31500069871 /* Util.swift in Sources */,
 				1CC303FB29D38D2700069871 /* ContentView.swift in Sources */,
 				1CC304EA29DAC56600069871 /* CommentsAPI.swift in Sources */,
+				1CC3051329DB4CEC00069871 /* VideoInfoView.swift in Sources */,
+				1CC3051D29DB541100069871 /* Channel.swift in Sources */,
 				1CC304E529DAC55200069871 /* Comments.swift in Sources */,
 				1CC303F929D38D2700069871 /* SimpleYoutubeApp.swift in Sources */,
 				1CC3043529D3E5EB00069871 /* PlaylistView.swift in Sources */,

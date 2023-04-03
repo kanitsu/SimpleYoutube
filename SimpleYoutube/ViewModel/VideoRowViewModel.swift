@@ -39,11 +39,13 @@ struct VideoRowViewModel: Identifiable {
     }
     
     func createVideoViewModel() -> VideoViewModel {
-        return VideoViewModel(data: VideoViewModel.VideoData(videoId: videoId,
-                                                             title: title,
-                                                             owner: owner,
-                                                             publishedAt: publishedAt,
-                                                             description: item.snippet.description
+        return VideoViewModel(data: VideoViewModel.VideoData(
+            videoId: videoId,
+            title: title,
+            owner: owner,
+            publishedAt: publishedAt,
+            description: item.snippet.description,
+            ownerId: item.snippet.videoOwnerChannelId ?? ""
         ))
     }
 }
