@@ -11,6 +11,9 @@ import WebKit
 struct VideoView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    @State private var showDescription = true
+    @State private var showComment = true
+    
     private let viewModel: VideoViewModel
     
     init(viewModel: VideoViewModel) {
@@ -23,13 +26,61 @@ struct VideoView: View {
             VideoInfoView(title: viewModel.title, owner: viewModel.owner, publishedAt: viewModel.publishedAt, photo: nil)
             Spacer()
             Divider()
-            ScrollView {
-                Text(viewModel.description)
+            VStack(alignment: .center) {
+                if showDescription {
+                    HStack(alignment: .center) {
+                        Spacer()
+                        Text("Tap to hide description")
+                        Image(systemName: "chevron.up")
+                        Spacer()
+                    }
+                    .foregroundColor(.blue)
+                    .padding(.horizontal, 10)
+                    ScrollView {
+                        Text(viewModel.description)
+                    }
+                        .padding(.horizontal, 10)
+                } else {
+                    HStack(alignment: .center) {
+                        Spacer()
+                        Text("Tap to show description")
+                        Image(systemName: "chevron.down")
+                        Spacer()
+                    }
+                    .foregroundColor(.blue)
+                    .padding(.horizontal, 10)
+                }
             }
-                .padding(.horizontal, 10)
+            .onTapGesture {
+                showDescription = !showDescription
+            }
             Divider()
-            CommentsView(viewModel: CommentsViewModel(videoId: viewModel.videoId))
-                .padding(.horizontal, 10)
+            VStack(alignment: .center) {
+                if showComment {
+                    HStack(alignment: .center) {
+                        Spacer()
+                        Text("Tap to hide comments")
+                        Image(systemName: "chevron.up")
+                        Spacer()
+                    }
+                    .foregroundColor(.blue)
+                    .padding(.horizontal, 10)
+                    CommentsView(viewModel: CommentsViewModel(videoId: viewModel.videoId))
+                        .padding(.horizontal, 10)
+                } else {
+                    HStack(alignment: .center) {
+                        Spacer()
+                        Text("Tap to show comments")
+                        Image(systemName: "chevron.down")
+                        Spacer()
+                    }
+                    .foregroundColor(.blue)
+                    .padding(.horizontal, 10)
+                }
+            }
+            .onTapGesture {
+                showComment = !showComment
+            }
         }
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backButton)

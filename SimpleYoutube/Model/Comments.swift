@@ -13,7 +13,7 @@ struct Comments: Codable {
     
     struct Item: Codable {
         let snippet: Snippet
-        let replies: Replies
+        let replies: Replies?
     }
     
     struct Snippet: Codable {

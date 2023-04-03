@@ -18,6 +18,13 @@ struct CommentsView: View {
         ScrollView {
             LazyVStack {
                 ForEach(viewModel.dataSource, content: CommentRowView.init(viewModel:))
+                if viewModel.hasMore {
+                    ProgressView()
+                        .frame(maxWidth: .infinity, minHeight: 60, alignment: .center)
+                        .onAppear {
+                            viewModel.addMoreContent()
+                        }
+                }
             }
         }
     }
