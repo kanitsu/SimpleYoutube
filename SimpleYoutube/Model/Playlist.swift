@@ -9,6 +9,7 @@ import Foundation
 
 struct Playlist: Codable {
     var items: [Item]
+    var nextPageToken: String
     
     struct Item: Codable {
         let kind: String

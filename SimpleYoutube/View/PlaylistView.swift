@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlaylistView: View {
     @ObservedObject var viewModel: PlaylistViewModel
+    @State private var initial = true
     
     init(viewModel: PlaylistViewModel) {
       self.viewModel = viewModel
@@ -19,6 +20,11 @@ struct PlaylistView: View {
             ScrollView {
                 LazyVStack {
                     ForEach(viewModel.dataSource, content: VideoRowView.init(viewModel:))
+                    ProgressView()
+                        .frame(width: .infinity, height: 60, alignment: .center)
+                        .onAppear {
+                            viewModel.addMoreContent()
+                        }
                 }
             }
             .navigationBarTitle(Text("Simple Youtube"), displayMode: .inline)

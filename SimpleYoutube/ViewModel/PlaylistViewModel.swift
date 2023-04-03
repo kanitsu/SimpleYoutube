@@ -11,37 +11,44 @@ import Foundation
 class PlaylistViewModel: ObservableObject {
     @Published var id: String = "PLS3XGZxi7cBWCGHov7-D4fhUk1yhUK0o1"
     @Published var dataSource: [VideoRowViewModel] = []
+    @Published var loading: Bool = false;
+    @Published var newContentAdded: Bool = false;
     
     private let playlistFetcher: PlaylistFetchable
     private var disposables = Set<AnyCancellable>()
+    private var contentPerPage: Int = 30
+    private var nextToken: String = ""
     
     init(
         playlistFetcher: PlaylistFetchable,
         scheduler: DispatchQueue = DispatchQueue(label: "PlaylistViewModel")
     ) {
         self.playlistFetcher = playlistFetcher
-        
-        do {
-            try fetchPlaylist(forId: id)
-        }
-        catch {
-            fatalError("\(error.localizedDescription)")
+    }
+    
+    func addMoreContent() {
+        if !loading {
+            do {
+                loading = true
+                newContentAdded = false;
+                try fetchPlaylist(forId: id)
+            }
+            catch {
+                fatalError("\(error.localizedDescription)")
+            }
         }
     }
     
     func fetchPlaylist(forId id: String) throws {
         var publisher : AnyPublisher<Playlist, PlaylistError>
         do {
-            try publisher = playlistFetcher.getPlaylist(forId: id)
+            try publisher = playlistFetcher.getPlaylist(forId: id, withLimit: contentPerPage, andToken: nextToken)
         }
         catch {
             throw error
         }
         
         publisher
-            .map { response in
-                response.items.map(VideoRowViewModel.init)
-            }
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { [weak self] value in
@@ -50,11 +57,16 @@ class PlaylistViewModel: ObservableObject {
                         case .failure:
                             self.dataSource = []
                         case .finished:
+                            self.loading = false
                             break
                     }
-                }, receiveValue: { [weak self] playlist in
+                }, receiveValue: { [weak self] response in
                     guard let self = self else { return }
-                    self.dataSource = playlist
+                    let playlist = response.items.map(VideoRowViewModel.init)
+                    self.dataSource.append(contentsOf: playlist)
+                    self.nextToken = response.nextPageToken
+                    self.newContentAdded = true
+                    self.contentPerPage = 20
                 }
             )
             .store(in: &disposables)
@@ -63,7 +75,9 @@ class PlaylistViewModel: ObservableObject {
 
 protocol PlaylistFetchable {
     func getPlaylist(
-        forId id: String
+        forId id: String,
+        withLimit limit: Int,
+        andToken token: String
     ) throws -> AnyPublisher<Playlist, PlaylistError>
 }
 
@@ -77,11 +91,13 @@ class PlaylistFetcher {
 
 extension PlaylistFetcher: PlaylistFetchable {
     func getPlaylist(
-        forId id: String
+        forId id: String,
+        withLimit limit: Int,
+        andToken token: String
     ) throws -> AnyPublisher<Playlist, PlaylistError> {
         var urlComp: URLComponents
         do {
-            try urlComp = getPlaylistItem(withId: id)
+            try urlComp = getPlaylistItem(withId: id, withLimit: limit, andToken: token)
         } catch {
             throw error
         }
@@ -114,7 +130,9 @@ extension PlaylistFetcher: PlaylistFetchable {
 
 private extension PlaylistFetcher {
     func getPlaylistItem(
-        withId id: String
+        withId id: String,
+        withLimit limit: Int,
+        andToken token: String
     ) throws -> URLComponents {
         guard let infoDict = Bundle.main.infoDictionary, let apiKey = infoDict["YOUTUBE_API_KEY"] as? String else {
             throw PlaylistError.setting(description: "Unable to read Info.plist or YOUTUBE_API_KEY not defined in it.")
@@ -126,8 +144,9 @@ private extension PlaylistFetcher {
         components.path = "/youtube/v3/playlistItems"
         components.queryItems = [
             URLQueryItem(name: "part", value: "snippet"),
-            URLQueryItem(name: "maxResults", value: "30"),
+            URLQueryItem(name: "maxResults", value: String(limit)),
             URLQueryItem(name: "playlistId", value: id),
+            URLQueryItem(name: "pageToken", value: token),
             URLQueryItem(name: "key", value: apiKey)
             
         ]
