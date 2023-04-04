@@ -114,16 +114,8 @@ struct SearchDialog: View {
     }
 }
 
-//struct PlaylistView_Previews: PreviewProvider {
-//    let fetcher: PlaylistFetcher
-//    let playlistViewModel: PlaylistViewModel
-//
-//    init() {
-//        fetcher = PlaylistFetcher()
-//        playlistViewModel = PlaylistViewModel(playlistFetcher: fetcher)
-//    }
-//
-//    static var previews: some View {
-//        PlaylistView(viewModel: playlistViewModel)
-//    }
-//}
+struct PlaylistView_Previews: PreviewProvider {
+    static var previews: some View {
+        PlaylistView(viewModel: PlaylistViewModel(playlistFetcher: PlaylistFetcher()))
+    }
+}

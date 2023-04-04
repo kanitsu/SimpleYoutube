@@ -29,3 +29,9 @@ struct CommentsView: View {
         }
     }
 }
+
+struct CommentsView_Previews: PreviewProvider {
+    static var previews: some View {
+        CommentsView(viewModel: CommentsViewModel(videoId: "y3ILgwzY0CU"))
+    }
+}

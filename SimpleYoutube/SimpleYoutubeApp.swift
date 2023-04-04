@@ -9,7 +9,6 @@ import SwiftUI
 
 @main
 struct SimpleYoutubeApp: App {
-    let persistenceController = PersistenceController.shared
     let fetcher: PlaylistFetcher
     let playlistViewModel: PlaylistViewModel
     
@@ -21,8 +20,6 @@ struct SimpleYoutubeApp: App {
     var body: some Scene {
         WindowGroup {
             PlaylistView(viewModel: playlistViewModel)
-//            ContentView()
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

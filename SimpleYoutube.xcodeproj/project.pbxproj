@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1CC303F929D38D2700069871 /* SimpleYoutubeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC303F829D38D2700069871 /* SimpleYoutubeApp.swift */; };
-		1CC303FB29D38D2700069871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC303FA29D38D2700069871 /* ContentView.swift */; };
 		1CC303FD29D38D2B00069871 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CC303FC29D38D2B00069871 /* Assets.xcassets */; };
 		1CC3040029D38D2B00069871 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CC303FF29D38D2B00069871 /* Preview Assets.xcassets */; };
 		1CC3040229D38D2B00069871 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3040129D38D2B00069871 /* Persistence.swift */; };
@@ -58,7 +57,6 @@
 /* Begin PBXFileReference section */
 		1CC303F529D38D2700069871 /* SimpleYoutube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleYoutube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CC303F829D38D2700069871 /* SimpleYoutubeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleYoutubeApp.swift; sourceTree = "<group>"; };
-		1CC303FA29D38D2700069871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1CC303FC29D38D2B00069871 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1CC303FF29D38D2B00069871 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1CC3040129D38D2B00069871 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 				1CC3045829D883E200069871 /* ViewModel */,
 				1CC3043E29D3E60C00069871 /* View */,
 				1CC3044229D7ED5600069871 /* Components */,
-				1CC303FA29D38D2700069871 /* ContentView.swift */,
 				1CC3050229DAE31500069871 /* Util.swift */,
 				1CC303F829D38D2700069871 /* SimpleYoutubeApp.swift */,
 				1CC303FC29D38D2B00069871 /* Assets.xcassets */,
@@ -373,7 +370,6 @@
 				1CC3046B29D8883B00069871 /* YoutubeThumbView.swift in Sources */,
 				1CC3040529D38D2B00069871 /* SimpleYoutube.xcdatamodeld in Sources */,
 				1CC3050329DAE31500069871 /* Util.swift in Sources */,
-				1CC303FB29D38D2700069871 /* ContentView.swift in Sources */,
 				1CC304EA29DAC56600069871 /* CommentsAPI.swift in Sources */,
 				1CC3051329DB4CEC00069871 /* VideoInfoView.swift in Sources */,
 				1CC3051D29DB541100069871 /* Channel.swift in Sources */,

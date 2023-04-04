@@ -58,7 +58,9 @@ private struct CommentInnerRowView: View {
             VStack(alignment: .leading) {
                 Text(viewModel.author)
                     .bold()
+                Spacer()
                 Text(viewModel.content)
+                Spacer()
                 HStack {
                     Spacer()
                     Text(viewModel.updatedAt)
@@ -68,5 +70,19 @@ private struct CommentInnerRowView: View {
             .padding(.leading, 5)
             Spacer()
         }
+    }
+}
+
+struct CommentRowView_Previews: PreviewProvider {
+    static var previews: some View {
+        CommentRowView(viewModel: CommentRowViewModel(comment: Comments.Comment(
+            id: "",
+            snippet: Comments.CommentDetail(
+                textOriginal: "This is another example of Chinese tit-for-tat. The Chinese Communist Party is behind this political propaganda",
+                authorDisplayName: "Roger",
+                authorProfileImageUrl: "https://yt3.ggpht.com/ytc/AL5GRJUSYdxwjy6Lh62yfDGq2avWRKwV-tQH2DVzGw=s48-c-k-c0x00ffffff-no-rj",
+                updatedAt: "2023-03-02T17:36:21Z"
+            )
+        )))
     }
 }
