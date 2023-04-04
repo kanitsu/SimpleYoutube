@@ -53,5 +53,7 @@
 	</array>
 	<key>YOUTUBE_API_KEY</key>
 	<string>YOUR_YOUTUBE_API_KEY_HERE</string>
+	<key>YOUTUBE_PLAYLIST_ID</key>
+	<string>PLS3XGZxi7cBWCGHov7-D4fhUk1yhUK0o1</string>
 </dict>
 </plist>

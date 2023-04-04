@@ -9,8 +9,6 @@ import Foundation
 import Combine
 
 class PlaylistViewModel: ObservableObject {
-    //@Published var id: String = "PLS3XGZxi7cBWCGHov7-D4fhUk1yhUK0o1"
-    @Published var id: String = "PLJxnQXiytA_TNtGCQKyjz_KKMiGKjXRAL"
     @Published var loading: Bool = false
     @Published var hasMore: Bool = true
     @Published var searchKeyword: String = ""
@@ -32,6 +30,10 @@ class PlaylistViewModel: ObservableObject {
     }
     
     func addMoreContent() {
+        guard let infoDict = Bundle.main.infoDictionary, let id = infoDict["YOUTUBE_PLAYLIST_ID"] as? String else {
+            fatalError("Unable to read Info.plist or YOUTUBE_PLAYLIST_ID not defined in it.")
+        }
+        
         if !loading {
             do {
                 loading = true
