@@ -26,7 +26,7 @@ struct VideoView: View {
                 .frame(maxHeight: 240)
             Spacer()
             VideoInfoView(viewModel: viewModel)
-                .frame(maxHeight: 100)
+                .frame(maxHeight: 110)
             Spacer()
             Divider()
             VStack(alignment: .center) {
