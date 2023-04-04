@@ -11,7 +11,6 @@ struct PlaylistView: View {
     @ObservedObject var viewModel: PlaylistViewModel
     @State private var scrollProxy: ScrollViewProxy?
     @State private var isShowingSearch = false
-    @State private var isShowingAlert = false
     
     init(viewModel: PlaylistViewModel) {
       self.viewModel = viewModel
@@ -42,16 +41,6 @@ struct PlaylistView: View {
                         }
                         scrollProxy?.scrollTo("theTop", anchor: .top)
                     }
-                }
-                .onChange(of: viewModel.alertText) { alertText in
-                    if !alertText.isEmpty {
-                        isShowingAlert = true
-                    }
-                }
-                .alert(isPresented: $isShowingAlert) {
-                    Alert(title: Text("Error"),
-                          message: Text(viewModel.alertText),
-                          dismissButton: .default(Text("OK")))
                 }
                 .onAppear {
                     self.scrollProxy = proxy

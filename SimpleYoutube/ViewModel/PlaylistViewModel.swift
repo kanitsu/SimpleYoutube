@@ -12,7 +12,6 @@ class PlaylistViewModel: ObservableObject {
     @Published var loading: Bool = false
     @Published var hasMore: Bool = true
     @Published var searchKeyword: String = ""
-    @Published var alertText: String = ""
     
     @Published var dataSource: [VideoRowViewModel] = []
     private var origin: [VideoRowViewModel] = []
@@ -59,17 +58,9 @@ class PlaylistViewModel: ObservableObject {
     }
     
     func clearSearch() {
-        if !loading {
-            searchKeyword = ""
-            dataSource = origin
-            origin = []
-        } else {
-            alertText = "Please wait a momment until load is finished."
-        }
-    }
-    
-    func clearAlert() {
-        alertText = ""
+        searchKeyword = ""
+        dataSource = origin
+        origin = []
     }
     
     func fetchPlaylist(forId id: String) throws {
@@ -98,7 +89,7 @@ class PlaylistViewModel: ObservableObject {
                     let playlist = response.items.filter { $0.snippet.videoOwnerChannelTitle != nil }
                         .map(VideoRowViewModel.init)
                     
-                    if self.searchKeyword.count > 0 {
+                    if self.origin.count > 0 {
                         let tokens = self.searchKeyword.components(separatedBy: " ")
                         let filteredPlaylist = playlist.filter { item in
                             tokens.contains { keyword in
